@@ -3,13 +3,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_recipesList">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_recipesList"
         android:name="com.kolis.cookingbook.ui.recipes.RecipesFragment"
         android:label="@string/menu_recipes"
-        tools:layout="@layout/fragment_recipes" />
+        tools:layout="@layout/fragment_recipes">
+        <action
+            android:id="@+id/action_recipesList_to_watchRecipeFragment"
+            app:destination="@id/nav_watch_recipe"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_watch_recipe"
+        android:name="com.kolis.cookingbook.ui.watchRecipe.WatchRecipeFragment"
+        android:label="@string/fragment_recipe"
+        tools:layout="@layout/fragment_gallery">
+
+        <!--        <argument-->
+        <!--            android:name="recipeModel"-->
+        <!--            app:argType="com.kolis.cookingbook.ui.recipes.RecipeModel"-->
+        <!--            app:nullable="false"/>-->
+
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"
@@ -23,3 +40,4 @@
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>
+

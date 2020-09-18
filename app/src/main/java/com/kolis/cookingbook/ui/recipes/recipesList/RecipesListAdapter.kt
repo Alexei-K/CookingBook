@@ -8,7 +8,8 @@ import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.RecipeModel
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
-class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.RecipesViewHolder>() {
+class RecipesListAdapter(private val onRecipeClicked: (RecipeModel) -> Unit) :
+    RecyclerView.Adapter<RecipesListAdapter.RecipesViewHolder>() {
 
 
     var recipeList = listOf<RecipeModel>()
@@ -21,7 +22,7 @@ class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.RecipesViewHo
     }
 
     override fun onBindViewHolder(holder: RecipesViewHolder, position: Int) {
-        holder.bind(position)
+        holder.bind(recipeList[position])
     }
 
     override fun getItemCount(): Int {
@@ -31,12 +32,15 @@ class RecipesListAdapter : RecyclerView.Adapter<RecipesListAdapter.RecipesViewHo
 
     inner class RecipesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(position: Int) {
-            itemView.recipeTitle.text = recipeList[position].title
+        fun bind(recipeModel: RecipeModel) {
+            val title = recipeModel.title
+            itemView.recipeTitle.text = title
             //refactor after DB impl
-            itemView.recipeIcon.setImageDrawable(itemView.context.getDrawable(recipeList[position].imagePath.toInt()))
+            itemView.recipeIcon.setImageDrawable(itemView.context.getDrawable(recipeModel.imagePath.toInt()))
             itemView.recipeTimeText.text =
-                itemView.context.getString(R.string.minutes, recipeList[position].cookTime)
+                itemView.context.getString(R.string.minutes, recipeModel.cookTime)
+            itemView.setOnClickListener { onRecipeClicked(recipeModel) }
+
         }
     }
 }

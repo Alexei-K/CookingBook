@@ -13,6 +13,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.kolis.cookingbook.utils.AppState
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,11 +38,12 @@ class MainActivity : AppCompatActivity() {
         // Add menu options here
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
+                R.id.nav_recipesList
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        AppState.appContext = applicationContext
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
