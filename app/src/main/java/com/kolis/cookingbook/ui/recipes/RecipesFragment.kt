@@ -9,13 +9,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.recipesList.RecipesListAdapter
-import com.kolis.cookingbook.ui.watchRecipe.WatchRecipeFragment
-import com.kolis.cookingbook.ui.watchRecipe.WatchRecipeFragmentArgs
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
 class RecipesFragment : Fragment() {
@@ -45,6 +41,10 @@ class RecipesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = NavHostFragment.findNavController(this)
         initRecycleView()
+        fab.setOnClickListener { view ->
+            recipesViewModel.onCreateRecipe()
+
+        }
     }
 
     private fun initRecycleView() {
