@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Nam-nam</string>
+
     <string name="nav_header_title">Кушайте много,\nКушайте вкусно</string>
     <string name="minutes">%d мин.</string>
 

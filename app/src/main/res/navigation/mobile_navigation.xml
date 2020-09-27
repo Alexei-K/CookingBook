@@ -21,11 +21,9 @@
         android:label="@string/fragment_recipe"
         tools:layout="@layout/fragment_gallery">
 
-        <!--        <argument-->
-        <!--            android:name="recipeModel"-->
-        <!--            app:argType="com.kolis.cookingbook.ui.recipes.RecipeModel"-->
-        <!--            app:nullable="false"/>-->
-
+        <argument
+            android:name="recipeModel"
+            app:argType="com.kolis.cookingbook.ui.recipes.RecipeModel" />
     </fragment>
 
     <fragment

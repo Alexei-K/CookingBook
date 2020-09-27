@@ -14,6 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.kolis.cookingbook.utils.AppState
+import com.kolis.cookingbook.utils.CustomExceptionHandler
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (Thread.getDefaultUncaughtExceptionHandler() !is CustomExceptionHandler) {
+            Thread.setDefaultUncaughtExceptionHandler(
+                CustomExceptionHandler()
+            )
+        }
         setContentView(R.layout.activity_main)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
