@@ -9,6 +9,7 @@
 
     <string name="menu_recipes">Recipes</string>
     <string name="fragment_recipe">Recipe</string>
+    <string name="new_recipe">New recipe</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="minutes">%d min.</string>

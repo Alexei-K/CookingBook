@@ -42,7 +42,7 @@ class RecipesFragment : Fragment() {
         navController = NavHostFragment.findNavController(this)
         initRecycleView()
         fab.setOnClickListener { view ->
-            recipesViewModel.onCreateRecipe()
+            recipesViewModel.onCreateRecipe(navController)
 
         }
     }

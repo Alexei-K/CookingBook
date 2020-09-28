@@ -4,5 +4,7 @@
 
     <string name="nav_header_title">Кушайте много,\nКушайте вкусно</string>
     <string name="minutes">%d мин.</string>
+    <string name="create_new_recipe">Новый рецепт</string>
+
 
 </resources>
