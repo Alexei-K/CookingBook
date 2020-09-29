@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageCooker"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:contentDescription="@string/nav_header_desc"
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         android:text="@string/nav_header_title"
+        android:gravity="center_horizontal"
         android:layout_gravity="center_horizontal"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 

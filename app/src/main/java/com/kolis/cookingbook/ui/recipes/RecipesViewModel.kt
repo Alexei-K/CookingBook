@@ -25,9 +25,6 @@ class RecipesViewModel : ViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
-    val db: RecipesDatabase
-
-    init {
-        db = RecipesDatabase.getDatabase(AppState.appContext)
-    }
+    val db: RecipesDatabase = RecipesDatabase.getDatabase(AppState.appContext)
+    val recipesLiveData = db.recipeDao().getAllRecipes()
 }

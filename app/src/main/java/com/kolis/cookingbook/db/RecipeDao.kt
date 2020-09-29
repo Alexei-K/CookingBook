@@ -1,5 +1,6 @@
 package com.kolis.cookingbook.db
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -11,6 +12,6 @@ interface RecipeDao {
     suspend fun deleteRecipe(entity: RecipeEntity)
 
     @Query(value = "SELECT * FROM ${RecipeEntity.TABLE_NAME}")
-    suspend fun getAllRecipes(): List<RecipeEntity>
+    fun getAllRecipes(): LiveData<List<RecipeEntity>>
 
 }

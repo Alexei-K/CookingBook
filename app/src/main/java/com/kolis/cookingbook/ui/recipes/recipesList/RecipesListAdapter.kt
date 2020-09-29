@@ -35,8 +35,8 @@ class RecipesListAdapter(private val onRecipeClicked: (RecipeModel) -> Unit) :
         fun bind(recipeModel: RecipeModel) {
             val title = recipeModel.title
             itemView.recipeTitle.text = title
-            //refactor after DB impl
-            itemView.recipeIcon.setImageDrawable(itemView.context.getDrawable(recipeModel.imagePath.toInt()))
+            //Disabled till db image saving implementation
+//            itemView.recipeIcon.setImageDrawable(itemView.context.getDrawable(recipeModel.imagePath.toInt()))
             itemView.recipeTimeText.text =
                 itemView.context.getString(R.string.minutes, recipeModel.cookTime)
             itemView.setOnClickListener { onRecipeClicked(recipeModel) }

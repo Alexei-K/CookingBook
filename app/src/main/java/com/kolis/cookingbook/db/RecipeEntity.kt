@@ -3,6 +3,7 @@ package com.kolis.cookingbook.db
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.kolis.cookingbook.db.RecipeEntity.Companion.TABLE_NAME
+import com.kolis.cookingbook.ui.recipes.RecipeModel
 
 @Entity(tableName = TABLE_NAME)
 data class RecipeEntity(
@@ -13,5 +14,9 @@ data class RecipeEntity(
 
     companion object {
         const val TABLE_NAME = "recipe_table"
+    }
+
+    fun toModel(): RecipeModel {
+        return RecipeModel(id, title, "", time.toInt())
     }
 }

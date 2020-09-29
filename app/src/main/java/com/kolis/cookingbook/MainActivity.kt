@@ -1,5 +1,6 @@
 package com.kolis.cookingbook
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
 import com.kolis.cookingbook.utils.AppState
 import com.kolis.cookingbook.utils.CustomExceptionHandler
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,6 +47,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         AppState.appContext = applicationContext
+        nav_view.getHeaderView(0).imageCooker.setOnClickListener {
+            val mp = MediaPlayer.create(this, R.raw.hello_nastia);
+            mp.start();
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

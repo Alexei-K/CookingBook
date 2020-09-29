@@ -19,9 +19,9 @@ class RecipesFragment : Fragment() {
     private lateinit var recipesViewModel: RecipesViewModel
     private val listadapter: RecipesListAdapter = RecipesListAdapter(::onRecipeClicked)
     private val sampleRecipeModel = listOf(
-        RecipeModel("CheeseBurger", R.drawable.burger_example.toString(), 60),
-        RecipeModel("porridge", R.drawable.porridge.toString(), 30),
-        RecipeModel("Pilaf", R.drawable.pilaf.toString(), 90)
+        RecipeModel(0L, "CheeseBurger", R.drawable.burger_example.toString(), 60),
+        RecipeModel(0L, "porridge", R.drawable.porridge.toString(), 30),
+        RecipeModel(0L, "Pilaf", R.drawable.pilaf.toString(), 90)
     )
 
     override fun onCreateView(
@@ -49,7 +49,11 @@ class RecipesFragment : Fragment() {
 
     private fun initRecycleView() {
         recipesRecycleView.layoutManager = LinearLayoutManager(context)
-        listadapter.recipeList = sampleRecipeModel
+        recipesViewModel.recipesLiveData.observe(viewLifecycleOwner, Observer { list ->
+            listadapter.recipeList = list.map { it.toModel() }
+            listadapter.notifyDataSetChanged()
+        })
+
         recipesRecycleView.adapter = listadapter
     }
 
