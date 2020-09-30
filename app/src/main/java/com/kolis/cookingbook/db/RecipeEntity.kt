@@ -9,7 +9,8 @@ import com.kolis.cookingbook.ui.recipes.RecipeModel
 data class RecipeEntity(
     @PrimaryKey(autoGenerate = true) var id: Long = 0L,
     val title: String,
-    val time: Long
+    val time: Long,
+    val imagePath: String
 ) {
 
     companion object {
@@ -17,6 +18,6 @@ data class RecipeEntity(
     }
 
     fun toModel(): RecipeModel {
-        return RecipeModel(id, title, "", time.toInt())
+        return RecipeModel(id, title, imagePath, time.toInt())
     }
 }

@@ -2,8 +2,6 @@ package com.kolis.cookingbook.ui.createRecipe
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.RecipeModel
+import com.kolis.cookingbook.utils.PhotoUploader
 import com.kolis.cookingbook.utils.ToastMaker
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 
@@ -71,29 +70,11 @@ class CreateRecipeFragment : Fragment() {
 
         when (requestCode) {
             TAKE_PHOTO -> {
-                ToastMaker.showLong("3")
                 if (data == null) return
-                val selectedImage: Uri = data!!.data!!
-                val inputStream = requireActivity().contentResolver!!.openInputStream(selectedImage)
-
-                recipeWatchImage.setImageBitmap(BitmapFactory.decodeStream(inputStream))
-                recipeModel = recipeModel.copy(imagePath = selectedImage.toString())
-//                val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-//
-//                val cursor: Cursor = requireActivity().contentResolver!!.query(
-//                    selectedImage,
-//                    filePathColumn, null, null, null
-//                )!!
-//                cursor?.moveToFirst()
-//
-//                val columnIndex: Int = cursor.getColumnIndex(filePathColumn[0])
-//                val picturePath: String = cursor.getString(columnIndex)
-//                cursor.close()
-//                ToastMaker.showLong("4")
-//
-//                val bitmap = BitmapFactory.decodeFile(picturePath)
-//                recipeWatchImage.setImageBitmap(bitmap)
-
+                val imagePath = PhotoUploader.savePhotoInternalStorage(data!!.data!!, requireActivity())
+                ToastMaker.showLong("absolute path of selected image = $imagePath")
+                recipeModel = recipeModel.copy(imagePath = imagePath.toString())
+                recipeWatchImage.setImageBitmap(PhotoUploader.loadImageFromStorage(recipeModel.imagePath))
             }
 
         }

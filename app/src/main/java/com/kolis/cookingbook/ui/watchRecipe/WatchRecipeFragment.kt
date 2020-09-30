@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.RecipeModel
+import com.kolis.cookingbook.utils.PhotoUploader
 import kotlinx.android.synthetic.main.fragment_recipe_watch.*
 
 class WatchRecipeFragment : Fragment() {
@@ -26,7 +27,7 @@ class WatchRecipeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //            //Disabled till db image saving implementation
+        recipeWatchImage.setImageBitmap(PhotoUploader.loadImageFromStorage(model.imagePath))
 //        recipeWatchImage.setImageDrawable(view.context.getDrawable(model.imagePath.toInt()))
         recipeWatchTitle.text = model.title
         recipeWatchTimeText.text = view.context.getString(R.string.minutes, model.cookTime)

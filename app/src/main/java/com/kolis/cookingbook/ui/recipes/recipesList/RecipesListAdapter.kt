@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.RecipeModel
+import com.kolis.cookingbook.utils.PhotoUploader
 import kotlinx.android.synthetic.main.recipe_item.view.*
 
 class RecipesListAdapter(private val onRecipeClicked: (RecipeModel) -> Unit) :
@@ -36,7 +37,7 @@ class RecipesListAdapter(private val onRecipeClicked: (RecipeModel) -> Unit) :
             val title = recipeModel.title
             itemView.recipeTitle.text = title
             //Disabled till db image saving implementation
-//            itemView.recipeIcon.setImageDrawable(itemView.context.getDrawable(recipeModel.imagePath.toInt()))
+            itemView.recipeIcon.setImageBitmap(PhotoUploader.loadImageFromStorage(recipeModel.imagePath))
             itemView.recipeTimeText.text =
                 itemView.context.getString(R.string.minutes, recipeModel.cookTime)
             itemView.setOnClickListener { onRecipeClicked(recipeModel) }

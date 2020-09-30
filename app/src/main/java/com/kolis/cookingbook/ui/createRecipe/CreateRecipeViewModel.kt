@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 
+
 class CreateRecipeViewModel : ViewModel() {
     fun onChoosePhotoClick(fragment: Fragment) {
         val intent = Intent()
@@ -28,4 +29,6 @@ class CreateRecipeViewModel : ViewModel() {
             idLiveData.postValue(RecipesDatabase.getDatabase(context).recipeDao().insertRecipe(recipeModel.toEntity()))
         }
     }
+
+
 }

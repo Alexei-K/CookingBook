@@ -12,7 +12,7 @@ data class RecipeModel(val id: Long = 0L, val title: String, val imagePath: Stri
     }
 
     fun toEntity(): RecipeEntity {
-        return RecipeEntity(id, title, cookTime.toLong())
+        return RecipeEntity(id, title, cookTime.toLong(), imagePath)
     }
 
 }
