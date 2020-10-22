@@ -13,4 +13,24 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="minutes">%d min.</string>
+
+
+    <!--    welcome screen-->
+
+    <string name="welcome1">Welcome to the coolest recipes app!</string>
+    <string name="welcome2">3 more steps, and you will forget about caring "What to cook?"</string>
+    <string name="welcome3">Let\'s register!</string>
+    <string name="skip">Skip ></string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+
+
+    <!--    Password dialog-->
+    <string name="you_are_registered">You are registered</string>
+    <string name="login_password">Login: %s \nPassword: %s</string>
+    <string name="copy_to_clipboard">Copy to clipboard</string>
+    <string name="password_is_wrong">Wrong password or user name.</string>
+    <string name="login">Login</string>
+    <string name="enter_login">Enter login and password</string>
+
 </resources>

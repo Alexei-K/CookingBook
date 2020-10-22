@@ -8,5 +8,9 @@
     <color name="grey">#858482</color>
     <color name="tomato">#D61800</color>
     <color name="lemon">#EDAE01</color>
+    <color name="black">#000000</color>
+    <color name="light_grey">#A0A0A0</color>
+    <color name="unselected_tab">#D6D6D6</color>
+    <color name="greenPrimary">#5ECE7B</color>
 
 </resources>
