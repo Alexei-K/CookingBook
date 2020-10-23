@@ -15,4 +15,8 @@ data class RecipeModel(val id: Long = 0L, val title: String, val imagePath: Stri
         return RecipeEntity(id, title, cookTime.toLong(), imagePath)
     }
 
+    fun isEmpty(): Boolean {
+        return (id == 0L && title.trim() == "" && imagePath.trim() == "" && cookTime == 0)
+    }
+
 }
