@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavController
@@ -12,9 +11,11 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.recipesList.RecipesListAdapter
+import com.kolis.cookingbook.ui.welcome.BaseToolbarFragment
+import com.kolis.cookingbook.utils.ToastMaker
 import kotlinx.android.synthetic.main.fragment_recipes.*
 
-class RecipesFragment : Fragment(), ActionMode.Callback {
+class RecipesFragment : BaseToolbarFragment(), ActionMode.Callback {
     private lateinit var navController: NavController
     private lateinit var recipesViewModel: RecipesViewModel
     private var actionMode: ActionMode? = null
@@ -25,6 +26,20 @@ class RecipesFragment : Fragment(), ActionMode.Callback {
         RecipeModel(0L, "porridge", R.drawable.porridge.toString(), 30),
         RecipeModel(0L, "Pilaf", R.drawable.pilaf.toString(), 90)
     )
+
+    override val menuId: Int
+        get() = R.menu.main_menu
+
+    override fun onMenuClickListener(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                ToastMaker.showLong("settings pressed")
+                true
+            }
+            else -> false
+        }
+    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

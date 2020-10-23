@@ -3,6 +3,7 @@ package com.kolis.cookingbook
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -15,11 +16,15 @@ import com.google.android.material.navigation.NavigationView
 import com.kolis.cookingbook.utils.AppState
 import com.kolis.cookingbook.utils.CustomExceptionHandler
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+
+    private var menuId: Int = R.menu.main_menu
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,12 +60,23 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(menuId, menu)
         return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun changeToolbar(menuId: Int) {
+        this.menuId = menuId
+        invalidateOptionsMenu();
+    }
+
+    fun setOnMenuClickListener(onMenuItemClick: (MenuItem) -> Boolean) {
+        toolbar.setOnMenuItemClickListener {
+            onMenuItemClick(it)
+        }
     }
 }

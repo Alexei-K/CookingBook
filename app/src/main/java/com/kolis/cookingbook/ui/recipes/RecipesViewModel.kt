@@ -10,7 +10,12 @@ import com.kolis.cookingbook.utils.AppState
 
 class RecipesViewModel : ViewModel() {
     fun onCreateRecipe(navController: NavController) {
-        navController.navigate(RecipesFragmentDirections.actionRecipesListToCreateRecipeFragment())
+        val model = RecipeModel.empty_model.copy()
+        navController.navigate(
+            RecipesFragmentDirections.actionRecipesListToCreateRecipeFragment(
+                model
+            )
+        )
     }
 
     fun deleteRecipes(models: List<RecipeModel>) {
