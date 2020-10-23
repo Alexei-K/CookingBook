@@ -9,7 +9,7 @@ interface RecipeDao {
     suspend fun insertRecipe(entity: RecipeEntity): Long
 
     @Delete
-    suspend fun deleteRecipe(entity: RecipeEntity)
+    suspend fun deleteRecipes(entity: List<RecipeEntity>)
 
     @Query(value = "SELECT * FROM ${RecipeEntity.TABLE_NAME}")
     fun getAllRecipes(): LiveData<List<RecipeEntity>>

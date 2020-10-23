@@ -33,4 +33,13 @@
     <string name="login">Login</string>
     <string name="enter_login">Enter login and password</string>
 
+    <!--   Action mode recipe list-->
+
+    <string name="delete">Delete</string>
+    <plurals name="recipes_selected">
+        <item quantity="one">%d recipe selected</item>
+        <item quantity="other">%d recipes selected</item>
+    </plurals>
+
+
 </resources>

@@ -2,15 +2,18 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/greenPrimary</item>
+        <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:actionModeBackground">@color/greenPrimary</item>
+
     </style>
 
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="windowActionModeOverlay">true</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
@@ -18,10 +21,16 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-    <style name="CurvyTextTitle" >
+    <style name="CurvyTextTitle">
         <item name="android:textSize">32sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">cursive</item>
+    </style>
+
+    <style name="MyActionModeStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/greenPrimary</item>
+        <item name="android:backgroundSplit">?android:attr/actionModeSplitBackground</item>
+        <item name="android:height">?android:attr/actionBarSize</item>
     </style>
 
 </resources>
