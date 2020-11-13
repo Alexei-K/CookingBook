@@ -24,10 +24,14 @@ class CreateRecipeViewModel : ViewModel() {
     val idLiveData: MutableLiveData<Long> = MutableLiveData()
 
     fun saveRecipe(context: Context, recipeModel: RecipeModel) {
-        ToastMaker.showLong("Saving to database $recipeModel")
-        CoroutineScope(IO).launch {
-            idLiveData.postValue(RecipesDatabase.getDatabase(context).recipeDao().insertRecipe(recipeModel.toEntity()))
+        if (!recipeModel.isEmpty()) {
+            ToastMaker.showLong("Saving to database $recipeModel")
+            CoroutineScope(IO).launch {
+                idLiveData.postValue(RecipesDatabase.getDatabase(context).recipeDao().insertRecipe(recipeModel.toEntity()))
+            }
         }
+
+
     }
 
 

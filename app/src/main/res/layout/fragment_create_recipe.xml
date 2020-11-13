@@ -54,7 +54,7 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="time to cook"
-            android:inputType="time"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/timerIcon"
             app:layout_constraintTop_toBottomOf="@id/recipeWatchTitle"

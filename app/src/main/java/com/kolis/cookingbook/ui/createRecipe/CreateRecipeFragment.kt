@@ -4,35 +4,62 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.widget.doOnTextChanged
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.navArgs
 import com.kolis.cookingbook.R
 import com.kolis.cookingbook.ui.recipes.RecipeModel
+import com.kolis.cookingbook.ui.welcome.BaseToolbarFragment
 import com.kolis.cookingbook.utils.PhotoUploader
 import com.kolis.cookingbook.utils.ToastMaker
 import kotlinx.android.synthetic.main.fragment_create_recipe.*
 
 
-class CreateRecipeFragment : Fragment() {
+class CreateRecipeFragment : BaseToolbarFragment() {
+
+
+    override val menuId: Int
+        get() = R.menu.main_menu
+
+    override fun onMenuClickListener(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_settings -> {
+                ToastMaker.showLong("settings pressed")
+                true
+            }
+            else -> false
+        }
+    }
 
     companion object {
         val TAKE_PHOTO: Int = 1473
     }
 
-    var recipeModel = RecipeModel.empty_model.copy()
+    val args: CreateRecipeFragmentArgs by navArgs()
+
+    lateinit var recipeModel: RecipeModel
     val viewModel = CreateRecipeViewModel()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val root = inflater.inflate(R.layout.fragment_create_recipe, container, false)
+        recipeModel = args.editRecipeModel
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListeners()
+        initData()
+    }
+
+    private fun initData() {
+        recipeWatchImage.setImageBitmap(PhotoUploader.loadImageFromStorage(recipeModel.imagePath))
+        recipeWatchTitle.setText(recipeModel.title, TextView.BufferType.EDITABLE)
+        recipeWatchTimeText.setText(recipeModel.cookTime.toString(), TextView.BufferType.EDITABLE)
     }
 
     private fun initListeners() {
@@ -41,12 +68,13 @@ class CreateRecipeFragment : Fragment() {
         }
         recipeWatchTitle.doOnTextChanged { text, _, _, _ ->
             recipeModel = recipeModel.copy(title = text.toString())
-            ToastMaker.showLong("New title = $text")
         }
-
         recipeWatchTimeText.doOnTextChanged { text, _, _, _ ->
-            recipeModel = recipeModel.copy(cookTime = text.toString().toInt())
-            ToastMaker.showLong("New time = $text")
+            try {
+                recipeModel = recipeModel.copy(cookTime = text.toString().toInt())
+            } catch (ex: Exception) {
+                recipeWatchTimeText.setText("0", TextView.BufferType.EDITABLE)
+            }
         }
     }
 
@@ -57,7 +85,6 @@ class CreateRecipeFragment : Fragment() {
             viewModel.idLiveData.removeObservers(viewLifecycleOwner)
         })
         viewModel.saveRecipe(requireContext(), recipeModel)
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
